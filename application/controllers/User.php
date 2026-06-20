@@ -1,8 +1,7 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller
-{
+class User extends CI_Controller {
 
     public function __construct()
     {
@@ -74,7 +73,7 @@ class User extends CI_Controller
         }
 
         $data = $this->_get_form_data();
-
+        
         if (empty($data['password'])) {
             unset($data['password']);
         }

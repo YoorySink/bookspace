@@ -19,15 +19,14 @@
   </thead>
   <tbody>
     <?php $no = 1; foreach ($kategori as $k) : ?>
-    <tr>
-      <td><?= $no++ ?></td>
-      <td><?= $k->nama_kategori ?></td>
-      <td>
-        <a href="<?= base_url('kategori/edit/' . $k->id_kategori) ?>" class="btn btn-sm btn-warning">Edit</a>
-        <a href="<?= base_url('kategori/hapus/' . $k->id_kategori) ?>" class="btn btn-sm btn-danger"
-           onclick="return confirm('Hapus kategori ini?')">Hapus</a>
-      </td>
-    </tr>
+      <tr>
+        <td><?= $no++ ?></td>
+        <td><?= $k->nama_kategori ?></td>
+        <td>
+          <a href="<?= base_url('kategori/edit/' . $k->id_kategori) ?>" class="btn btn-sm btn-warning">Edit</a>
+          <a href="<?= base_url('kategori/hapus/' . $k->id_kategori) ?>" class="btn btn-sm btn-danger" onclick="return confirm('Hapus kategori ini?')">Hapus</a>
+        </td>
+      </tr>
     <?php endforeach; ?>
   </tbody>
 </table>

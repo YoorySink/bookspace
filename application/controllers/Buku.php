@@ -1,8 +1,7 @@
 <?php
-defined('BASEPATH') or exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Buku extends CI_Controller
-{
+class Buku extends CI_Controller {
 
     public function __construct()
     {
@@ -17,7 +16,7 @@ class Buku extends CI_Controller
     public function index()
     {
         $data['title'] = ($this->session->userdata('role') == 'admin') ? 'Manajemen Buku' : 'Daftar Buku';
-
+        
         $keyword = $this->input->get('keyword', TRUE);
         $id_kategori = $this->input->get('id_kategori', TRUE);
 
