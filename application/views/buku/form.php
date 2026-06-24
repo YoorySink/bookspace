@@ -22,28 +22,28 @@
       </div>
       <div class="mb-3">
         <label class="form-label">Judul Buku</label>
-        <input type="text" name="judul" class="form-control" value="<?= set_value('judul', $item ? $item->judul : '') ?>" required>
+        <input type="text" name="judul" class="form-control" value="<?= set_value('judul', isset($item) ? $item->judul : '') ?>" required>
       </div>
       <div class="mb-3">
         <label class="form-label">Penulis</label>
-        <input type="text" name="penulis" class="form-control" value="<?= set_value('penulis', $item ? $item->penulis : '') ?>" required>
+        <input type="text" name="penulis" class="form-control" value="<?= set_value('penulis', isset($item) ? $item->penulis : '') ?>" required>
       </div>
       <div class="mb-3">
         <label class="form-label">Penerbit</label>
-        <input type="text" name="penerbit" class="form-control" value="<?= set_value('penerbit', $item ? $item->penerbit : '') ?>" required>
+        <input type="text" name="penerbit" class="form-control" value="<?= set_value('penerbit', isset($item) ? $item->penerbit : '') ?>" required>
       </div>
       <div class="mb-3">
         <label class="form-label">Tahun Terbit</label>
-        <input type="number" name="tahun_terbit" class="form-control" value="<?= set_value('tahun_terbit', $item ? $item->tahun_terbit : '') ?>" required>
+        <input type="number" name="tahun_terbit" class="form-control" value="<?= set_value('tahun_terbit', isset($item) ? $item->tahun_terbit : '') ?>" required>
       </div>
       <div class="mb-3">
         <label class="form-label">Stok</label>
-        <input type="number" name="stok" class="form-control" value="<?= set_value('stok', $item ? $item->stok : '0') ?>" required>
+        <input type="number" name="stok" class="form-control" value="<?= set_value('stok', isset($item) ? $item->stok : '0') ?>" required>
       </div>
       <div class="mb-3">
         <label class="form-label">Cover Buku (Format Gambar)</label>
         <input type="file" name="cover" class="form-control">
-        <?php if ($item && $item->cover) : ?>
+        <?php if (isset($item) && $item && $item->cover) : ?>
           <div class="mt-2">
             <small class="text-muted d-block">Cover Saat Ini:</small>
             <img src="<?= base_url('uploads/' . $item->cover) ?>" width="80" class="img-thumbnail mt-1">

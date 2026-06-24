@@ -55,6 +55,7 @@ class Buku extends CI_Controller {
 
         $data['title'] = 'Tambah Buku Baru';
         $data['kategori'] = $this->kategori->getAll();
+        $data['item'] = NULL;
         $data['aksi'] = base_url('buku/simpan');
 
         $this->load->view('templates/header', $data);
