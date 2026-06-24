@@ -18,7 +18,7 @@ class User extends CI_Controller {
     public function index()
     {
         $data['title'] = 'Manajemen Data User';
-        $data['user'] = $this->user->getAll();
+        $data['users'] = $this->user->getAll();
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');

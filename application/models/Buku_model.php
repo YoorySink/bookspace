@@ -16,6 +16,11 @@ class Buku_model extends CI_Model
         return $this->db->get()->result();
     }
 
+    public function getAllWithKategori()
+    {
+        return $this->getAll();
+    }
+
     // Mengambil satu buku beserta nama kategorinya, dipakai untuk detail dan form edit
     public function getById($id)
     {
@@ -27,13 +32,21 @@ class Buku_model extends CI_Model
         return $this->db->get()->row();
     }
 
+    public function getByIdWithKategori($id)
+    {
+        return $this->getById($id);
+    }
+
     // Mencari buku berdasarkan judul, dipakai pada fitur pencarian peminjam
     public function cari($keyword)
     {
         $this->db->select('buku.*, kategori.nama_kategori');
         $this->db->from('buku');
         $this->db->join('kategori', 'kategori.id_kategori = buku.id_kategori');
+        $this->db->group_start();
         $this->db->like('buku.judul', $keyword);
+        $this->db->or_like('buku.penulis', $keyword);
+        $this->db->group_end();
         $this->db->order_by('buku.judul', 'ASC');
 
         return $this->db->get()->result();

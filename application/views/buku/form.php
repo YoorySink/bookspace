@@ -10,10 +10,11 @@
     <form method="post" action="<?= $aksi ?>" enctype="multipart/form-data">
       <div class="mb-3">
         <label class="form-label">Kategori Buku</label>
+        <?php $kategori_list = isset($kategori) ? $kategori : []; ?>
         <select name="id_kategori" class="form-select" required>
           <option value="">-- Pilih Kategori --</option>
           <?php foreach ($kategori_list as $k) : ?>
-            <option value="<?= $k->id_kategori ?>" <?= set_value('id_kategori', $item ? $item->id_kategori : '') == $k->id_kategori ? 'selected' : '' ?>>
+            <option value="<?= $k->id_kategori ?>" <?= set_value('id_kategori', isset($item) ? $item->id_kategori : '') == $k->id_kategori ? 'selected' : '' ?>>
               <?= $k->nama_kategori ?>
             </option>
           <?php endforeach; ?>

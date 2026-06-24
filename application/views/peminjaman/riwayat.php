@@ -1,6 +1,8 @@
 <h4>Riwayat Peminjaman Buku</h4>
 <p class="text-muted">Seluruh catatan transaksi peminjaman buku yang pernah Anda lakukan.</p>
 
+<?php $riwayat = isset($riwayat) ? $riwayat : []; ?>
+
 <table class="table table-bordered bg-white mt-3">
   <thead style="background-color:#AACCD6;">
     <tr>

@@ -11,14 +11,15 @@ class Buku extends CI_Controller {
         }
         $this->load->model('Buku_model', 'buku');
         $this->load->model('Kategori_model', 'kategori');
+        $this->load->model('Peminjaman_model', 'peminjaman');
     }
 
     public function index()
     {
         $data['title'] = ($this->session->userdata('role') == 'admin') ? 'Manajemen Buku' : 'Daftar Buku';
         
-        $keyword = $this->input->get('keyword', TRUE);
-        $id_kategori = $this->input->get('id_kategori', TRUE);
+        $keyword = $this->input->get('cari', TRUE);
+        $id_kategori = $this->input->get('kategori', TRUE);
 
         if ($keyword) {
             $data['buku'] = $this->buku->cari($keyword);
@@ -28,7 +29,8 @@ class Buku extends CI_Controller {
             $data['buku'] = $this->buku->getAllWithKategori();
         }
 
-        $data['kategori'] = $this->kategori->getAll();
+        $data['kategori_list'] = $this->kategori->getAll();
+        $data['kategori'] = $data['kategori_list'];
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');
@@ -120,7 +122,13 @@ class Buku extends CI_Controller {
     {
         if ($this->session->userdata('role') != 'admin') redirect('dashboard');
 
-        $this->buku->delete($id);
+        if ($this->peminjaman->countByBuku($id) > 0) {
+            $this->session->set_flashdata('error', 'Tidak dapat menghapus buku karena terdapat riwayat peminjaman. Hapus terlebih dahulu data peminjaman terkait jika diperlukan.');
+        } else {
+            $this->buku->delete($id);
+            $this->session->set_flashdata('pesan', 'Buku berhasil dihapus.');
+        }
+
         redirect('buku');
     }
 
