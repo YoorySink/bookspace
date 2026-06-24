@@ -91,6 +91,20 @@ class Buku extends CI_Controller {
 
         $data = $this->_get_form_data();
         $cover = $this->_upload_cover();
+        if ($cover === FALSE) {
+            $data['title'] = 'Tambah Buku Baru';
+            $data['kategori'] = $this->kategori->getAll();
+            $data['item'] = NULL;
+            $data['aksi'] = base_url('buku/simpan');
+            $data['error_upload'] = $this->upload->display_errors('', '');
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('buku/form', $data);
+            $this->load->view('templates/footer');
+            return;
+        }
+
         if ($cover) {
             $data['cover'] = $cover;
         }
@@ -111,6 +125,20 @@ class Buku extends CI_Controller {
 
         $data = $this->_get_form_data();
         $cover = $this->_upload_cover();
+        if ($cover === FALSE) {
+            $data['title'] = 'Edit Data Buku';
+            $data['kategori'] = $this->kategori->getAll();
+            $data['item'] = $this->buku->getById($id);
+            $data['aksi'] = base_url('buku/ubah/' . $id);
+            $data['error_upload'] = $this->upload->display_errors('', '');
+
+            $this->load->view('templates/header', $data);
+            $this->load->view('templates/sidebar');
+            $this->load->view('buku/form', $data);
+            $this->load->view('templates/footer');
+            return;
+        }
+
         if ($cover) {
             $data['cover'] = $cover;
         }
@@ -157,8 +185,12 @@ class Buku extends CI_Controller {
 
     private function _upload_cover()
     {
+        if (empty($_FILES['cover']['name'])) {
+            return NULL;
+        }
+
         $config['upload_path']   = './uploads/';
-        $config['allowed_types'] = 'jpg|jpeg|png';
+        $config['allowed_types'] = 'jpg|jpeg|png|webp';
         $config['max_size']      = 2048;
         $config['file_name']     = 'cover_' . time();
 
@@ -171,6 +203,7 @@ class Buku extends CI_Controller {
         if ($this->upload->do_upload('cover')) {
             return $this->upload->data('file_name');
         }
-        return NULL;
+
+        return FALSE;
     }
 }
