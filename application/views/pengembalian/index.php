@@ -28,7 +28,7 @@
         <td><?= date('d-m-Y', strtotime($p->tanggal_pinjam)) ?></td>
         <td><span class="badge bg-warning text-dark"><?= $p->status ?></span></td>
         <td>
-          <a href="<?= base_url('pengembalian/proses/' . $p->id_peminjaman) ?>" class="btn btn-sm btn-success w-100" onclick="return confirm('Konfirmasi pengembalian buku ini?')">
+          <a href="<?= base_url('pengembalian/konfirmasi/' . $p->id_peminjaman) ?>" class="btn btn-sm btn-success w-100" onclick="return confirm('Konfirmasi pengembalian buku ini?')">
             Kembalikan
           </a>
         </td>

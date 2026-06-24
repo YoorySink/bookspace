@@ -30,7 +30,7 @@
     <div class="card text-white bg-success shadow-sm mb-3">
       <div class="card-body">
         <h6 class="card-title">Stok Tersedia</h6>
-        <h2><?= $stok_tersedia ?></h2>
+        <h2><?= $total_tersedia ?></h2>
       </div>
     </div>
   </div>

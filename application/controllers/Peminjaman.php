@@ -15,8 +15,14 @@ class Peminjaman extends CI_Controller {
 
     public function index()
     {
-        $data['title'] = 'Ajukan Peminjaman Buku';
-        $data['buku'] = $this->buku->getAllWithKategori();
+        $data['title'] = 'Peminjaman Buku Aktif';
+        $id_user = $this->session->userdata('id_user');
+        $data['peminjaman'] = $this->peminjaman->getAktifByUser($id_user);
+
+        if (empty($data['peminjaman'])) {
+            redirect('peminjaman/riwayat');
+            return;
+        }
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/sidebar');

@@ -1,6 +1,7 @@
 <h4>Peminjaman Buku Aktif</h4>
 <p class="text-muted">Daftar buku yang saat ini sedang Anda pinjam.</p>
 
+<?php $peminjaman = isset($peminjaman) ? $peminjaman : []; ?>
 <?php if ($this->session->flashdata('pesan')) : ?>
   <div class="alert alert-success"><?= $this->session->flashdata('pesan') ?></div>
 <?php endif; ?>
